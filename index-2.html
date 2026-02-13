@@ -1,0 +1,227 @@
+<!DOCTYPE HTML PUBLIC "-//SoftQuad Software//DTD HoTMetaL PRO 6.0::19990601::extensions to HTML 4.0//EN" "hmpro6.dtd">
+<!--thanks Tony im geting the hang of this now. Still playing with it-->
+<HTML> 
+
+<!-- Mirrored from www.paul-chambers.co.uk/index.htm by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Feb 2026 20:51:12 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<HEAD> 
+<TITLE> Paul Chambers. T.V. VIDEO &amp; AUDIO REPAIRS - P.A. &amp; DISCO HIRE </TITLE> <LINK HREF="css/paul.html" LANG="en.uk" REL="stylesheet" TYPE="text/css">
+<META NAME="KEYWORDS" CONTENT="paul,chambers,Berkhamsted,tring,potten end,northchurch,ashley greene,gossoms end,Bourne End,Little Gaddesden,Nettleden,
+Ringshall,Wiginton,herts,television,repairs,dvd,dvd recorders,electronic servicing,electronics,electronic components,HDD recorders,video,tv,audio,amplifier,amp,disco,pa, public address,communication,England,
+TV-VCR-HiFi Repair,freeview,dvb,dtt,ghd styler,vhs to dvd copy">
+<META NAME="AUTHOR" CONTENT="Tony Steel Paul Chambers ">
+<META NAME="COPYRIGHT" CONTENT="Tony Steel Paul Chambers">
+<META HTTP-EQUIV="AUDIENCE" CONTENT="General">
+<META HTTP-EQUIV="Content-language" CONTENT="en-gb">
+<META HTTP-EQUIV="LANGUAGE" CONTENT="English">
+<META HTTP-EQUIV="DIALECT" CONTENT="British">
+</HEAD> 
+<BODY STYLE="font-size: 14px; font-family: Trebuchet MS, Verdana, Tahoma" LEFTMARGIN="7" TOPMARGIN="0" MARGINWIDTH="0" MARGINHEIGHT="0" ONLOAD="window.status='Welcome to Paul Chambers T.V. VIDEO and AUDIO REPAIRS .'; ">
+<script>
+// CREDITS:
+// Snowmaker Copyright (c) 2003 Peter Gehrig. All rights reserved.
+// Distributed by http://www.hypergurl.com
+// Permission given to use the script provided that this notice remains as is.
+
+// Set the number of snowflakes (more than 30 - 40 not recommended)
+var snowmax=44
+
+// Set the colors for the snow. Add as many colors as you like
+var snowcolor=new Array("#aaaacc","#ddddFF","#ccccDD")
+
+// Set the fonts, that create the snowflakes. Add as many fonts as you like
+var snowtype=new Array("Arial Black","Arial Narrow","Times","Comic Sans MS")
+
+// Set the letter that creates your snowflake (recommended:*)
+var snowletter="*"
+
+// Set the speed of sinking (recommended values range from 0.3 to 2)
+var sinkspeed=0.8
+
+// Set the maximal-size of your snowflaxes
+var snowmaxsize=22
+
+// Set the minimal-size of your snowflaxes
+var snowminsize=8
+
+// Set the snowing-zone
+// Set 1 for all-over-snowing, set 2 for left-side-snowing 
+// Set 3 for center-snowing, set 4 for right-side-snowing
+var snowingzone=2
+
+///////////////////////////////////////////////////////////////////////////
+// CONFIGURATION ENDS HERE
+///////////////////////////////////////////////////////////////////////////
+
+
+// Do not edit below this line
+var snow=new Array()
+var marginbottom
+var marginright
+var timer
+var i_snow=0
+var x_mv=new Array();
+var crds=new Array();
+var lftrght=new Array();
+var browserinfos=navigator.userAgent 
+var ie5=document.all&&document.getElementById&&!browserinfos.match(/Opera/)
+var ns6=document.getElementById&&!document.all
+var opera=browserinfos.match(/Opera/)  
+var browserok=ie5||ns6||opera
+
+function randommaker(range) {		
+	rand=Math.floor(range*Math.random())
+    return rand
+}
+
+function initsnow() {
+	if (ie5 || opera) {
+		marginbottom = document.body.clientHeight
+		marginright = document.body.clientWidth
+	}
+	else if (ns6) {
+		marginbottom = window.innerHeight
+		marginright = window.innerWidth
+	}
+	var snowsizerange=snowmaxsize-snowminsize
+	for (i=0;i<=snowmax;i++) {
+		crds[i] = 0;                      
+    	lftrght[i] = Math.random()*15;         
+    	x_mv[i] = 0.03 + Math.random()/10;
+		snow[i]=document.getElementById("s"+i)
+		snow[i].style.fontFamily=snowtype[randommaker(snowtype.length)]
+		snow[i].size=randommaker(snowsizerange)+snowminsize
+		snow[i].style.fontSize=snow[i].size
+		snow[i].style.color=snowcolor[randommaker(snowcolor.length)]
+		snow[i].sink=sinkspeed*snow[i].size/5
+		if (snowingzone==1) {snow[i].posx=randommaker(marginright-snow[i].size)}
+		if (snowingzone==2) {snow[i].posx=randommaker(marginright/2-snow[i].size)}
+		if (snowingzone==3) {snow[i].posx=randommaker(marginright/2-snow[i].size)+marginright/4}
+		if (snowingzone==4) {snow[i].posx=randommaker(marginright/2-snow[i].size)+marginright/2}
+		snow[i].posy=randommaker(6*marginbottom-marginbottom-6*snow[i].size)
+		snow[i].style.left=snow[i].posx
+		snow[i].style.top=snow[i].posy
+	}
+	movesnow()
+}
+
+function movesnow() {
+	for (i=0;i<=snowmax;i++) {
+		crds[i] += x_mv[i];
+		snow[i].posy+=snow[i].sink
+		snow[i].style.left=snow[i].posx+lftrght[i]*Math.sin(crds[i]);
+		snow[i].style.top=snow[i].posy
+		
+		if (snow[i].posy>=marginbottom-6*snow[i].size || parseInt(snow[i].style.left)>(marginright-3*lftrght[i])){
+			if (snowingzone==1) {snow[i].posx=randommaker(marginright-snow[i].size)}
+			if (snowingzone==2) {snow[i].posx=randommaker(marginright/2-snow[i].size)}
+			if (snowingzone==3) {snow[i].posx=randommaker(marginright/2-snow[i].size)+marginright/4}
+			if (snowingzone==4) {snow[i].posx=randommaker(marginright/2-snow[i].size)+marginright/2}
+			snow[i].posy=0
+		}
+	}
+	var timer=setTimeout("movesnow()",50)
+}
+
+for (i=0;i<=snowmax;i++) {
+	document.write("<span id='s"+i+"' style='position:absolute;top:-"+snowmaxsize+"'>"+snowletter+"</span>")
+}
+if (browserok) {
+	window.onload=initsnow
+}
+</script>  
+<TABLE WIDTH="780" BGCOLOR="#FFFFFF" CELLPADDING="5" CELLSPACING="5" BORDER="0" STYLE='font-size: 14px; font-family: "Trebuchet MS", Verdana, Tahoma'>
+<TR> 
+    <TD ALIGN="LEFT" VALIGN="TOP" STYLE='font-size: 14px; font-family: "Trebuchet MS", Verdana, Tahoma' COLSPAN="2"> 
+      <P STYLE="font-size: 24px; font-family: Trebuchet MS, Verdana, Tahoma; color: #027EC1"><!IMG SRC="img/paulchambers.jpg" ALT="Paul Chambers" WIDTH="200" HEIGHT="150" BORDER="7"
+ALIGN="RIGHT"> <A HREF="index-2.html"><IMG SRC="img/banner.gif" WIDTH="433" HEIGHT="65" BORDER="0" ALT="Paul Chambers" HSPACE="0" VSPACE="0"> 
+        </A> <BR>
+T.V. VIDEO and AUDIO REPAIRS 
+<BR>
+PUBLIC ADDRESS and DISCO HIRE</P></TD> 
+</TR> 
+<TR> 
+    <TD ALIGN="LEFT" VALIGN="TOP" STYLE='font-size: 14px; font-family: "Trebuchet MS", Verdana, Tahoma' WIDTH="162" height="466"> 
+      <P STYLE='font-size: 14px; font-family: &quot;Trebuchet MS&quot;, Verdana, Tahoma'> 
+        <BR>
+        <BR>
+        <IMG SRC="img/bullet1.gif" WIDTH="15" HEIGHT="15" BORDER="0" NAME="h"> 
+        &nbsp;<A HREF="index-2.html">Home</A> &nbsp;<IMG SRC="img/bullet2.gif" WIDTH="15" HEIGHT="15" BORDER="0"> 
+        <BR>
+        <BR>
+        <IMG SRC="img/1x1.gif" WIDTH="15" HEIGHT="15" BORDER="0" NAME="rs"> &nbsp;<A HREF="repair.html" ONMOUSEOVER='document.rs.src="img/bullet1.gif"' ONMOUSEOUT='document.rs.src="img/1x1.gif"'>Repair 
+        Services</A> <BR>
+        <BR>
+        <IMG SRC="img/1x1.gif" WIDTH="15" HEIGHT="15" BORDER="0" NAME="pa"> &nbsp;<A HREF="pa.html" ONMOUSEOVER='document.pa.src="img/bullet1.gif"' ONMOUSEOUT='document.pa.src="img/1x1.gif"'>Public 
+        Address Hire</A> <BR>
+        <BR>
+        <IMG SRC="img/1x1.gif" WIDTH="15" HEIGHT="15" BORDER="0" NAME="dh"> &nbsp;<A HREF="disco.html" ONMOUSEOVER='document.dh.src="img/bullet1.gif"' ONMOUSEOUT='document.dh.src="img/1x1.gif"'>Disco 
+        Hire</A> <BR>
+        <BR>
+        <IMG SRC="img/1x1.gif" WIDTH="15" HEIGHT="15" BORDER="0" NAME="lo"> &nbsp;<A HREF="location.html" ONMOUSEOVER='document.lo.src="img/bullet1.gif"' ONMOUSEOUT='document.lo.src="img/1x1.gif"'>Location</A> 
+        <BR>
+        <BR>
+        <IMG SRC="img/1x1.gif" WIDTH="15" HEIGHT="15" BORDER="0" NAME="c"> &nbsp;<A HREF="link.html" ONMOUSEOVER='document.c.src="img/bullet1.gif"' ONMOUSEOUT='document.c.src="img/1x1.gif"'>Links</A> 
+        <BR>
+        <BR>
+        <IMG SRC="img/1x1.gif" WIDTH="15" HEIGHT="15" BORDER="0" NAME="c"> &nbsp;<A HREF="Freeview.html" ONMOUSEOVER='document.c.src="img/bullet1.gif"' ONMOUSEOUT='document.c.src="img/1x1.gif"'>Freeview 
+        Switchover</A> </P>
+      <P STYLE='font-size: 14px; font-family: &quot;Trebuchet MS&quot;, Verdana, Tahoma'><img src="img/2015to%202016.png" width="168" height="274"></P>
+      <P STYLE='font-size: 14px; font-family: &quot;Trebuchet MS&quot;, Verdana, Tahoma'><BR>
+      </P>
+      </TD> 
+    <TD ALIGN="CENTER" VALIGN="TOP" STYLE='font-size: 14px; font-family: "Trebuchet MS", Verdana, Tahoma' WIDTH="583" height="466"> 
+      <P STYLE='font-size: 14px; font-family: &quot;Trebuchet MS&quot;, Verdana, Tahoma' ALIGN="LEFT"> 
+        <BR>
+        <BR>
+        Repairs undertaken to repair most modern types of TV under 24&quot; Only 
+        <BR>
+        VCR, DVD player/Recorders Hi Fi and Audio Amplifier Equipment. <BR>
+        New replacement or equivalent remote controls<BR>
+        We also sell a range of Audio Video & Computer leads <BR>
+        Connectors & Accessories<br>
+        A/V leads (specials can be made to order) , <BR>
+        Customer individual requirements &quot;Bespoke work&quot;, <BR>
+        where possible, can be accommodated.<BR>
+        Transfer VHS Cassettes to DVD<br>
+        <br>
+        PAT Testing undertaken<br>
+        Public Address System and Disco Hire.<BR>
+        <BR>
+        Contact; Paul Chambers, <BR>
+        1a, CROSS OAK ROAD, <BR>
+        BERKHAMSTED, <BR>
+        HERTFORDSHIRE, HP4 3EH <BR>
+        <BR>
+        TELEPHONE: 01442 864927 <BR>
+        MOBILE: 07764 274079</P>
+      <P STYLE='font-size: 14px; font-family: "Trebuchet MS", Verdana, Tahoma' ALIGN="LEFT"><img src="img/paulchambers%20mail.%202.jpg" width="272" height="14"> 
+      </P> 
+      <DIV ID="div448" STYLE="position: absolute; left: 490px; top: 90px; width: 86px; height: 74px"> 
+        <IMG WIDTH="88" HEIGHT="88" BORDER="0" SRC="img/lcdtv.jpg" ALT="TV repair"> 
+      </DIV> 
+      <DIV ID="div453" STYLE="position: absolute; left: 556px; top: 338px; width: 127px; height: 62px"> 
+        <IMG WIDTH="86" HEIGHT="74" BORDER="0" SRC="img/img3.gif" ALT="Hi-Fi repair"> 
+      </DIV> 
+      <DIV ID="div369" STYLE="position: absolute; left: 500px; top: 250px; width: 127px; height: 62px"> 
+        <IMG WIDTH="61" HEIGHT="66" BORDER="0" SRC="img/img5.gif" ALT="PA hire"> 
+      </DIV> 
+      <DIV ID="div450" STYLE="position: absolute; left: 640px; top: 120px; width: 86px; height: 74px"> 
+        <IMG WIDTH="127" HEIGHT="62" BORDER="0" SRC="img/img4.gif" ALT="VCR/DVD repair"> 
+      </DIV> 
+      <DIV ID="div447" STYLE="position: absolute; left: 637px; top: 251px; width: 127px; height: 62px"> 
+        <IMG WIDTH="88" HEIGHT="61" BORDER="0" SRC="img/img7.gif" ALT="Disco/PA hire"> 
+      </DIV> 
+      <DIV ID="div341" STYLE="position: absolute; left: 583px; top: 424px; width: 127px; height: 62px"> 
+        <IMG WIDTH="85" HEIGHT="66" BORDER="0" SRC="img/img8.gif" ALT="Disco hire"> 
+      </DIV> 
+      <DIV ID="div335" STYLE="position: absolute; left:468px; top:342px; width:88px; height:96px;"> 
+        <img width="87" height="90" border="0" src="img/img6.gif" alt="Hi-Fi repair"> 
+      </DIV>
+    </TD> 
+</TR> 
+</TABLE>
+</BODY>
+
+<!-- Mirrored from www.paul-chambers.co.uk/index.htm by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 13 Feb 2026 20:51:12 GMT -->
+</HTML>
